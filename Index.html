@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mi Página</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <nav>
+      <a href="#main" onclick="mostrarSeccion('main')">
+          <img style="height: 70px; width: 130px;" src="images/logo.png" alt="logo">
+      </a>
+      <a href="#acerca" onclick="mostrarSeccion('acerca')">Acerca de mí</a>
+      <a href="#blog" onclick="mostrarSeccion('blog')">Blog</a>
+      <a href="#galeria" onclick="mostrarSeccion('galeria')">Galería de Proyectos</a>
+      <a href="#contacto" onclick="mostrarSeccion('contacto')">Información de Contacto</a>
+    </nav>
+
+    <div class="content">
+      <section id="main" class="seccion">
+        <h1>Acerca de mí</h1>
+        <p>Soy alguien increíblemente genial... probablemente más de lo que tú puedas imaginar, ¡eh!</p>
+      </section>
+
+      <section id="acerca" class="seccion">
+        <h1>Acerca de mí</h1>
+        <p>Soy alguien increíblemente genial... probablemente más de lo que tú puedas imaginar, ¡eh!</p>
+      </section>
+
+      <section id="blog" class="seccion">
+        <h1>Blog</h1>
+        <p>Aquí escribiré cosas demasiado interesantes para mentes lentas, así que asegúrate de seguir el ritmo.</p>
+      </section>
+
+      <section id="galeria" class="seccion">
+        <h1>Galería de Proyectos</h1>
+        <p>Una colección de proyectos que harían que hasta los dioses lloren de envidia.</p>
+      </section>
+
+      <section id="contacto" class="seccion">
+        <h1>Información de Contacto</h1>
+        <p>¿Quieres contactarme? ¡Qué atrevido eres!</p>
+        <ul>
+          <li>Email: <a href="mailto:tuemail@gmail.com">tuemail@gmail.com</a></li>
+          <li>LinkedIn: <a href="https://www.linkedin.com/in/tu-perfil" target="_blank">Perfil de LinkedIn</a></li>
+          <li>GitHub: <a href="https://github.com/tu-usuario" target="_blank">Perfil de GitHub</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      <a href="https://www.linkedin.com/in/tu-perfil" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn"> LinkedIn
+      </a>
+      <a href="https://github.com/tu-usuario" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub
+      </a>
+      <a href="mailto:tuemail@gmail.com">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail"> Gmail
+      </a>
+    </footer>
+
+    <script src="scripts.js"></script>
+
+  </body>
+</html>
