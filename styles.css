@@ -11,6 +11,7 @@ nav {
   background-color: #ffffff;
   padding: 10px;
   border-bottom: 1px gray solid;
+  width: 200vh;
 }
 
 nav a {
@@ -26,7 +27,9 @@ nav a:hover {
 
 .content {
   padding: 20px;
-  flex: 1;
+  justify-content: center;
+  text-align: center;
+  display: flex;
 }
 
 section {

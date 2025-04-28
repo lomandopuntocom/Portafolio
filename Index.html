@@ -8,21 +8,30 @@
   </head>
   <body>
 
-    <nav>
+    <nav style="display: flex; align-items: center;">
       <a href="#main" onclick="mostrarSeccion('main')">
-          <img style="height: 70px; width: 130px;" src="images/logo.png" alt="logo">
+        <img style="height: 70px; width: 130px;" src="images/logo.png" alt="logo">
       </a>
-      <a href="#acerca" onclick="mostrarSeccion('acerca')">Acerca de mí</a>
-      <a href="#blog" onclick="mostrarSeccion('blog')">Blog</a>
-      <a href="#galeria" onclick="mostrarSeccion('galeria')">Galería de Proyectos</a>
-      <a href="#contacto" onclick="mostrarSeccion('contacto')">Información de Contacto</a>
-    </nav>
+      <div style="margin-left: auto; display: flex; gap: 20px;">
+        <a href="#acerca" onclick="mostrarSeccion('acerca')">Acerca de mí</a>
+        <a href="#blog" onclick="mostrarSeccion('blog')">Blog</a>
+        <a href="#galeria" onclick="mostrarSeccion('galeria')">Galería de Proyectos</a>
+        <a href="#contacto" onclick="mostrarSeccion('contacto')">Información de Contacto</a>
+      </div>
+    </nav>    
 
     <div class="content">
-      <section id="main" class="seccion">
-        <h1>Acerca de mí</h1>
-        <p>Soy alguien increíblemente genial... probablemente más de lo que tú puedas imaginar, ¡eh!</p>
-      </section>
+      <section id="main" class="seccion" style="display: flexbox;">
+        <div style="display: flex; gap: 10px;">
+          <img style="height: 380px; width: 380px; border-radius: 100%;" src="images/Realme.JPG" alt="Mi foto">
+          <div style="display: grid; border-left: 3px rgb(188, 188, 188) solid;">
+            <h1>Hola! Soy Jean Paul.</h1>
+            <p style="width: 400px;">
+              Soy estudiante de Ingeniería de Software en la Universidad Católica Boliviana, apasionado por el diseño de interfaces interactivas y el desarrollo eficiente de software.  
+            </p>
+          </div>
+        </div>
+      </section>      
 
       <section id="acerca" class="seccion">
         <h1>Acerca de mí</h1>
