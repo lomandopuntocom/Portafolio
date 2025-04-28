@@ -60,7 +60,7 @@ footer img {
 .blogcard{
   width: 300px;
   height: 530px;
-  border: black 2px solid;
+  border: rgb(193, 193, 193) 1px solid;
   border-radius: 20px;
 }
 
@@ -78,8 +78,16 @@ footer img {
 }
 
 .submitb{
-  background-color: #b3b3b3;
+  background-color: #ffffff;
   width: 144px;
   height: 37px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.projcard{
+  width: 300px;
+  height: 530px;
+  border: rgb(193, 193, 193) 1px solid;
   border-radius: 20px;
 }
