@@ -7,6 +7,6 @@ function mostrarSeccion(id) {
   }
   
   document.addEventListener('DOMContentLoaded', () => {
-    mostrarSeccion('main');
+    mostrarSeccion('blog');
   });
   

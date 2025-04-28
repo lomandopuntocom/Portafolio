@@ -56,3 +56,30 @@ footer img {
   vertical-align: middle;
   margin-right: 5px;
 }
+
+.blogcard{
+  width: 300px;
+  height: 530px;
+  border: black 2px solid;
+  border-radius: 20px;
+}
+
+.cardimage{
+  width: 300px;
+  height: 200px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.textcard{
+  text-align: left;
+  justify-content: left;
+  margin: 10px;
+}
+
+.submitb{
+  background-color: #b3b3b3;
+  width: 144px;
+  height: 37px;
+  border-radius: 20px;
+}
