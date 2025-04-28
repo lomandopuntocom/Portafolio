@@ -91,3 +91,14 @@ footer img {
   border: rgb(193, 193, 193) 1px solid;
   border-radius: 20px;
 }
+
+.formbody{
+  border: 1px, black, solid;
+  border-radius: 20px;
+  height: 400px;
+  padding-top: 50px;
+}
+
+.textbox{
+  
+}

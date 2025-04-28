@@ -189,11 +189,21 @@
       <section id="contacto" class="seccion">
         <h1>Información de Contacto</h1>
         <p>¿Quieres contactarme?</p>
-        <ul>
-          <li>Email: <a href="mailto:tuemail@gmail.com">tuemail@gmail.com</a></li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/tu-perfil" target="_blank">Perfil de LinkedIn</a></li>
-          <li>GitHub: <a href="https://github.com/tu-usuario" target="_blank">Perfil de GitHub</a></li>
-        </ul>
+          <form id="formulario-contacto" class="formbody">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+        
+            <label for="correo">Correo:</label><br>
+            <input type="email" id="correo" name="correo" required><br><br>
+        
+            <label for="telefono">Teléfono:</label><br>
+            <input type="tel" id="telefono" name="telefono" required><br><br>
+        
+            <label for="mensaje">Mensaje:</label><br>
+            <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
+        
+            <button type="submit">Enviar</button>
+          </form>
       </section>
     </div>
 
@@ -204,7 +214,7 @@
       <a href="https://github.com/lomandopuntocom" target="_blank">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"> GitHub
       </a>
-      <a href="mailto:tuemail@gmail.com">
+      <a href="jean.cabrera@ucb.edu.bo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail"> Gmail
       </a>
     </footer>
