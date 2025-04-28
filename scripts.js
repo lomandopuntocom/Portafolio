@@ -6,7 +6,6 @@ function mostrarSeccion(id) {
     document.getElementById(id).style.display = 'block';
   }
   
-  // Mostrar "acerca" al cargar la página
   document.addEventListener('DOMContentLoaded', () => {
     mostrarSeccion('main');
   });
