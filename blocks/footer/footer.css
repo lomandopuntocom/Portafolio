@@ -1,0 +1,19 @@
+.footer {
+  background-color: #ffffff;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px gray solid;
+}
+
+.footer__link {
+  color: rgb(0, 0, 0);
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer__img {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
