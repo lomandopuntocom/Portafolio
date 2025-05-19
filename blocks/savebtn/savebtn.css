@@ -1,0 +1,21 @@
+.savebtn {
+  background: #fffbe6;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  transition: background 0.2s;
+}
+.savebtn--active {
+  background: #fff2b3;
+}
+.savebtn__icon {
+  font-size: 22px;
+  vertical-align: middle;
+  color: #bbb;
+  transition: color 0.2s;
+}
+.savebtn--active .savebtn__icon {
+  color: gold;
+}

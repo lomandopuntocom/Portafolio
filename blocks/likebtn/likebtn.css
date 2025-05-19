@@ -1,0 +1,26 @@
+.likebtn {
+  background: #ffeaea;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  padding: 5px 10px;
+  transition: background 0.2s;
+}
+.likebtn--active {
+  background: #ffd6d6;
+}
+.likebtn__icon {
+  font-size: 22px;
+  vertical-align: middle;
+  color: #bbb;
+  transition: color 0.2s;
+}
+.likebtn--active .likebtn__icon {
+  color: red;
+}
+.likebtn__count {
+  margin-left: 4px;
+}

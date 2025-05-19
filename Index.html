@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mi Página</title>
+    <script src="scripts.js"></script>
     <link rel="stylesheet" href="blocks/global/global.css">
     <link rel="stylesheet" href="blocks/nav/nav.css">
     <link rel="stylesheet" href="blocks/footer/footer.css">
@@ -14,6 +15,8 @@
     <link rel="stylesheet" href="blocks/content/content.css">
     <link rel="stylesheet" href="blocks/section/section.css">
     <link rel="stylesheet" href="blocks/body/body.css">
+    <link rel="stylesheet" href="blocks/likebtn/likebtn.css">
+    <link rel="stylesheet" href="blocks/savebtn/savebtn.css">
   </head>
   <body>
 
@@ -99,7 +102,7 @@
       <section id="blog" class="seccion">
         <ul style="list-style: none; overflow-y: auto; display: flex; gap: 50px;">
           <li class="blogcard">
-            <img class="blogcard__image" src="images/1743370677261.jpeg" alt="holo">
+            <img class="blogcard__image" src="images/arte.jpg" alt="holo">
             <h3>
               "La IA no reemplaza la creatividad humana"
             </h3>
@@ -113,7 +116,7 @@
             </p>
           </li>
           <li class="blogcard">
-            <img class="blogcard__image" src="images/1740346744537.jpeg" alt="holo">
+            <img class="blogcard__image" src="images/iajuegos.jpg" alt="holo">
             <h3>
               "Cómo la IA está transformando el desarrollo de videojuegos"
             </h3>
@@ -127,7 +130,7 @@
             </p>
           </li>
           <li class="blogcard">
-            <img class="blogcard__image" src="images/0892815a-861f-4817-98fc-400591330cc3.png" alt="Hola">
+            <img class="blogcard__image" src="images/interfaz.png" alt="Hola">
             <h3>
               "La importancia del UI Design en la experiencia de juego"
             </h3>
@@ -151,44 +154,8 @@
 
       <section id="galeria" class="seccion">
         <h1>Galería de Proyectos</h1>
-        <ul style="list-style: none; overflow-y: auto; display: flex; gap: 50px;">
-          <li class="projcard">
-            <img class="blogcard__image" src="images/gestor.jpg" alt="holo">
-            <p>feb. 2024 - jun. 2024</p>
-            <h3>
-              Gestor de Eventos
-            </h3>
-            <p class="blogcard__text">
-              Durante mi educación en la Universidad Católica Boliviana, 
-              se nos encargó hacer un gestor de eventos. 
-              Mi papel fue el de hacer la interfaz de todas las paginas del proyecto.
-            </p>
-          </li>
-          <li class="projcard">
-            <img class="blogcard__image" src="images/miku.jpg" alt="holo">
-            <p>feb. 2024 - jun. 2024</p>
-            <h3>
-              Sistema Solar
-            </h3>
-            <p class="blogcard__text">
-              Durante mi educación en la Universidad Católica Boliviana, 
-              se nos dio la libertad de hacer un proyecto manejando graficos en 3d con TreeGL. 
-              nuestro equipo se decantó por hacer un sistema solar
-            </p>
-          </li>
-          <li class="projcard">
-            <img class="blogcard__image" src="images/ordernow.png" alt="Hola">
-            <p>feb. 2025 - Actualidad</p>
-            <h3>
-              OrderNow
-            </h3>
-            <p class="blogcard__text">
-              Durante mi educación en la Universidad Católica Boliviana, 
-              nos asignaron por primera vez un proyecto real, 
-              que sea usable para nuestro curriculum. 
-              Una pagina de pedidos de comida.
-            </p>
-          </li>
+        <ul id="proyectos-lista" style="list-style: none; overflow-y: auto; display: flex; gap: 50px;">
+          <!-- Las tarjetas serán inyectadas aquí por JS -->
         </ul>
         <button class="submitb">Ver Mas</button>
       </section>

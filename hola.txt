@@ -1,0 +1,3 @@
+login
+guardar publicacion
+boton de like que cuente like
