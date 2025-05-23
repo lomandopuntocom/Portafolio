@@ -1,3 +1,4 @@
+// --- ROUTER MEJORADO ---
 function mostrarSeccion(id) {
   const secciones = document.querySelectorAll('.seccion');
   secciones.forEach(seccion => {
@@ -9,19 +10,28 @@ function mostrarSeccion(id) {
     seccionMostrar.style.display = 'block';
   }
 
-  history.replaceState(null, null, '#' + id);
+  // Actualiza el hash solo si es diferente
+  if (window.location.hash.substring(1) !== id) {
+    history.pushState({seccion: id}, null, '#' + id);
+  }
 }
 
+// Escucha cambios en el hash y en el historial
 window.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash.substring(1);
-  if (hash) {
-    mostrarSeccion(hash);
-  } else {
-    mostrarSeccion('main');
+  function handleRoute() {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      mostrarSeccion(hash);
+    } else {
+      mostrarSeccion('main');
+    }
   }
+  window.addEventListener('popstate', handleRoute);
+  window.addEventListener('hashchange', handleRoute);
+  handleRoute();
 });
 
-// --- INYECCIÓN DE TARJETAS DE PROYECTO ---
+// --- INYECCIÓN DE TARJETAS DE PROYECTO Y MEMENTO ---
 window.addEventListener('DOMContentLoaded', () => {
   const proyectos = [
     {
@@ -44,10 +54,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
+  // Recuperar estado Memento de likes y guardados
+  let memento = JSON.parse(localStorage.getItem('proyectosMemento')) || {
+    likes: [5, 12, 8],
+    liked: [false, false, false],
+    saved: [false, false, false]
+  };
+
   const lista = document.getElementById('proyectos-lista');
   if (lista) {
     lista.innerHTML = "";
-    proyectos.forEach(proyecto => {
+    proyectos.forEach((proyecto, idx) => {
       const li = document.createElement('li');
       li.className = 'projcard';
       li.innerHTML = `
@@ -56,58 +73,50 @@ window.addEventListener('DOMContentLoaded', () => {
         <h3>${proyecto.titulo}</h3>
         <p class="blogcard__text">${proyecto.descripcion}</p>
       `;
+
+      // --- BOTONES DE LIKE Y GUARDAR CON MEMENTO ---
+      const btnContainer = document.createElement('div');
+      btnContainer.style.position = 'absolute';
+      btnContainer.style.top = '10px';
+      btnContainer.style.right = '10px';
+      btnContainer.style.display = 'flex';
+      btnContainer.style.gap = '10px';
+      btnContainer.style.zIndex = '2';
+      li.style.position = 'relative';
+
+      // Like
+      const likeBtn = document.createElement('button');
+      likeBtn.className = 'likebtn';
+      likeBtn.innerHTML = `<span class="likebtn__icon">&#10084;</span> <span class="likebtn__count">${memento.likes[idx]}</span>`;
+      if (memento.liked[idx]) likeBtn.classList.add('likebtn--active');
+      likeBtn.addEventListener('click', function() {
+        memento.liked[idx] = !memento.liked[idx];
+        likeBtn.classList.toggle('likebtn--active', memento.liked[idx]);
+        if (memento.liked[idx]) {
+          memento.likes[idx]++;
+        } else {
+          memento.likes[idx]--;
+        }
+        likeBtn.querySelector('.likebtn__count').textContent = memento.likes[idx];
+        localStorage.setItem('proyectosMemento', JSON.stringify(memento));
+      });
+
+      // Guardar
+      const saveBtn = document.createElement('button');
+      saveBtn.className = 'savebtn';
+      saveBtn.innerHTML = `<span class="savebtn__icon">&#9873;</span>`;
+      if (memento.saved[idx]) saveBtn.classList.add('savebtn--active');
+      saveBtn.addEventListener('click', function() {
+        memento.saved[idx] = !memento.saved[idx];
+        saveBtn.classList.toggle('savebtn--active', memento.saved[idx]);
+        localStorage.setItem('proyectosMemento', JSON.stringify(memento));
+      });
+
+      btnContainer.appendChild(likeBtn);
+      btnContainer.appendChild(saveBtn);
+      li.insertBefore(btnContainer, li.firstChild);
+
       lista.appendChild(li);
     });
   }
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-
-  const projcards = document.querySelectorAll('.projcard');
-  // Simulación de likes iniciales (puedes personalizar estos valores)
-  const likesArray = [5, 12, 8];
-
-  projcards.forEach((card, idx) => {
-    const btnContainer = document.createElement('div');
-    btnContainer.style.position = 'absolute';
-    btnContainer.style.top = '10px';
-    btnContainer.style.right = '10px';
-    btnContainer.style.display = 'flex';
-    btnContainer.style.gap = '10px';
-    btnContainer.style.zIndex = '2';
-
-    card.style.position = 'relative';
-
-    let liked = false;
-    let saved = false;
-
-    const likeBtn = document.createElement('button');
-    likeBtn.className = 'likebtn';
-    likeBtn.innerHTML = `<span class="likebtn__icon">&#10084;</span> <span class="likebtn__count">${likesArray[idx]}</span>`;
-    likeBtn.addEventListener('click', function() {
-      liked = !liked;
-      likeBtn.classList.toggle('likebtn--active', liked);
-      const heart = likeBtn.querySelector('.likebtn__icon');
-      const count = likeBtn.querySelector('.likebtn__count');
-      if (liked) {
-        likesArray[idx]++;
-      } else {
-        likesArray[idx]--;
-      }
-      count.textContent = likesArray[idx];
-    });
-
-    const saveBtn = document.createElement('button');
-    saveBtn.className = 'savebtn';
-    saveBtn.innerHTML = `<span class="savebtn__icon">&#9873;</span>`;
-    saveBtn.addEventListener('click', function() {
-      saved = !saved;
-      saveBtn.classList.toggle('savebtn--active', saved);
-    });
-
-    btnContainer.appendChild(likeBtn);
-    btnContainer.appendChild(saveBtn);
-
-    card.insertBefore(btnContainer, card.firstChild);
-  });
 });
