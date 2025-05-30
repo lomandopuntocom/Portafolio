@@ -120,3 +120,71 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// --- PATRÓN COMMAND ---
+class Command {
+  execute() {}
+  undo() {}
+}
+
+class LikeCommand extends Command {
+  constructor(idx, memento, btn) {
+    super();
+    this.idx = idx;
+    this.memento = memento;
+    this.btn = btn;
+    this.prevLiked = memento.liked[idx];
+    this.prevLikes = memento.likes[idx];
+  }
+  execute() {
+    this.memento.liked[this.idx] = !this.memento.liked[this.idx];
+    this.btn.classList.toggle('likebtn--active', this.memento.liked[this.idx]);
+    if (this.memento.liked[this.idx]) {
+      this.memento.likes[this.idx]++;
+    } else {
+      this.memento.likes[this.idx]--;
+    }
+    this.btn.querySelector('.likebtn__count').textContent = this.memento.likes[this.idx];
+    localStorage.setItem('proyectosMemento', JSON.stringify(this.memento));
+  }
+  undo() {
+    this.memento.liked[this.idx] = this.prevLiked;
+    this.memento.likes[this.idx] = this.prevLikes;
+    this.btn.classList.toggle('likebtn--active', this.memento.liked[this.idx]);
+    this.btn.querySelector('.likebtn__count').textContent = this.memento.likes[this.idx];
+    localStorage.setItem('proyectosMemento', JSON.stringify(this.memento));
+  }
+}
+
+class SaveCommand extends Command {
+  constructor(idx, memento, btn) {
+    super();
+    this.idx = idx;
+    this.memento = memento;
+    this.btn = btn;
+    this.prevSaved = memento.saved[idx];
+  }
+  execute() {
+    this.memento.saved[this.idx] = !this.memento.saved[this.idx];
+    this.btn.classList.toggle('savebtn--active', this.memento.saved[this.idx]);
+    localStorage.setItem('proyectosMemento', JSON.stringify(this.memento));
+  }
+  undo() {
+    this.memento.saved[this.idx] = this.prevSaved;
+    this.btn.classList.toggle('savebtn--active', this.memento.saved[this.idx]);
+    localStorage.setItem('proyectosMemento', JSON.stringify(this.memento));
+  }
+}
+
+const PersistMixin = Base => class extends Base {
+  persist() {
+    localStorage.setItem('proyectosMemento', JSON.stringify(this.memento));
+  }
+};
+
+class LikeCommandWithPersist extends PersistMixin(LikeCommand) {
+  execute() {
+    super.execute();
+    this.persist();
+  }
+}
