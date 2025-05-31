@@ -1,4 +1,3 @@
-// --- ROUTER MEJORADO ---
 function mostrarSeccion(id) {
   const secciones = document.querySelectorAll('.seccion');
   secciones.forEach(seccion => {
@@ -10,13 +9,11 @@ function mostrarSeccion(id) {
     seccionMostrar.style.display = 'block';
   }
 
-  // Actualiza el hash solo si es diferente
   if (window.location.hash.substring(1) !== id) {
     history.pushState({seccion: id}, null, '#' + id);
   }
 }
 
-// Escucha cambios en el hash y en el historial
 window.addEventListener('DOMContentLoaded', () => {
   function handleRoute() {
     const hash = window.location.hash.substring(1);
@@ -31,7 +28,76 @@ window.addEventListener('DOMContentLoaded', () => {
   handleRoute();
 });
 
-// --- INYECCIÓN DE TARJETAS DE PROYECTO Y MEMENTO ---
+
+let savedItemsInstance = null;
+
+class SavedItemsManager {
+  constructor() {
+    if (savedItemsInstance) {
+      return savedItemsInstance;
+    }
+    this._savedItems = [];
+    this._subscribers = [];
+    savedItemsInstance = this;
+  }
+
+  add(proyecto) {
+    if (!this.isSaved(proyecto.titulo)) {
+      this._savedItems.push(proyecto);
+      this.notify();
+    }
+  }
+
+  remove(proyectoTitulo) {
+    this._savedItems = this._savedItems.filter(p => p.titulo !== proyectoTitulo);
+    this.notify();
+  }
+
+  isSaved(proyectoTitulo) {
+    return this._savedItems.some(p => p.titulo === proyectoTitulo);
+  }
+
+  getItems() {
+    return this._savedItems;
+  }
+
+  subscribe(observerFn) {
+    this._subscribers.push(observerFn);
+  }
+
+  notify() {
+    this._subscribers.forEach(observerFn => observerFn());
+  }
+}
+
+const savedItemsManager = new SavedItemsManager();
+
+function renderSavedItems() {
+  const listaGuardados = document.getElementById('guardados-lista');
+  if (!listaGuardados) return;
+
+  listaGuardados.innerHTML = '';
+  const items = savedItemsManager.getItems();
+
+  if (items.length === 0) {
+    listaGuardados.innerHTML = '<p>Aún no has guardado ningún proyecto.</p>';
+    return;
+  }
+
+  items.forEach(proyecto => {
+    const li = document.createElement('li');
+    li.className = 'projcard';
+    li.innerHTML = `
+      <img class="blogcard__image" src="${proyecto.imagen}" alt="${proyecto.titulo}">
+      <h3>${proyecto.titulo}</h3>
+      <p class="blogcard__text">${proyecto.descripcion}</p>
+    `;
+    listaGuardados.appendChild(li);
+  });
+}
+
+savedItemsManager.subscribe(renderSavedItems);
+
 window.addEventListener('DOMContentLoaded', () => {
   const proyectos = [
     {
@@ -54,12 +120,18 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // Recuperar estado Memento de likes y guardados
   let memento = JSON.parse(localStorage.getItem('proyectosMemento')) || {
     likes: [5, 12, 8],
     liked: [false, false, false],
     saved: [false, false, false]
   };
+  
+  proyectos.forEach((proyecto, idx) => {
+    if (memento.saved[idx]) {
+      savedItemsManager.add(proyecto);
+    }
+  });
+  renderSavedItems();
 
   const lista = document.getElementById('proyectos-lista');
   if (lista) {
@@ -74,7 +146,6 @@ window.addEventListener('DOMContentLoaded', () => {
         <p class="blogcard__text">${proyecto.descripcion}</p>
       `;
 
-      // --- BOTONES DE LIKE Y GUARDAR CON MEMENTO ---
       const btnContainer = document.createElement('div');
       btnContainer.style.position = 'absolute';
       btnContainer.style.top = '10px';
@@ -84,7 +155,6 @@ window.addEventListener('DOMContentLoaded', () => {
       btnContainer.style.zIndex = '2';
       li.style.position = 'relative';
 
-      // Like
       const likeBtn = document.createElement('button');
       likeBtn.className = 'likebtn';
       likeBtn.innerHTML = `<span class="likebtn__icon">&#10084;</span> <span class="likebtn__count">${memento.likes[idx]}</span>`;
@@ -92,23 +162,26 @@ window.addEventListener('DOMContentLoaded', () => {
       likeBtn.addEventListener('click', function() {
         memento.liked[idx] = !memento.liked[idx];
         likeBtn.classList.toggle('likebtn--active', memento.liked[idx]);
-        if (memento.liked[idx]) {
-          memento.likes[idx]++;
-        } else {
-          memento.likes[idx]--;
-        }
+        memento.likes[idx] += memento.liked[idx] ? 1 : -1;
         likeBtn.querySelector('.likebtn__count').textContent = memento.likes[idx];
         localStorage.setItem('proyectosMemento', JSON.stringify(memento));
       });
 
-      // Guardar
       const saveBtn = document.createElement('button');
       saveBtn.className = 'savebtn';
       saveBtn.innerHTML = `<span class="savebtn__icon">&#9873;</span>`;
       if (memento.saved[idx]) saveBtn.classList.add('savebtn--active');
+      
       saveBtn.addEventListener('click', function() {
         memento.saved[idx] = !memento.saved[idx];
         saveBtn.classList.toggle('savebtn--active', memento.saved[idx]);
+        
+        if (memento.saved[idx]) {
+          savedItemsManager.add(proyecto);
+        } else {
+          savedItemsManager.remove(proyecto.titulo);
+        }
+        
         localStorage.setItem('proyectosMemento', JSON.stringify(memento));
       });
 
