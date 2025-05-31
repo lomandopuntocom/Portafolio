@@ -185,7 +185,15 @@
 
       <section id="guardados" class="seccion" style="display: none;">
         <h1>Mis Proyectos Guardados</h1>
-        <ul id="guardados-lista" style="list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 50px;"></ul>
+
+        <div class="search-container" style="margin-bottom: 20px; display: flex; gap: 10px; justify-content: center;">
+          <input type="text" id="saved-search-input" placeholder="Buscar por título..." style="padding: 8px;">
+          <button id="saved-search-btn" class="submitb" style="cursor: pointer;">Buscar</button>
+          <button id="saved-search-clear-btn" class="submitb" style="cursor: pointer;">Limpiar</button>
+        </div>
+
+        <ul id="guardados-lista" style="list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 50px;">
+            </ul>
       </section>
     </div>
 
