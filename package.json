@@ -1,0 +1,28 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "description": "Este proyecto consiste en el desarrollo de un portafolio web profesional siguiendo un diseño limpio y minimalista, basado en el sistema de diseño proporcionado en Figma.",
+  "main": "scripts.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lomandopuntocom/Portafolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lomandopuntocom/Portafolio/issues"
+  },
+  "homepage": "https://github.com/lomandopuntocom/Portafolio#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0"
+  }
+}

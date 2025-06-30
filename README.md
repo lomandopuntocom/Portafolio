@@ -18,6 +18,7 @@ Este proyecto consiste en el desarrollo de un portafolio web profesional siguien
 - Se implementa navegación fluida y diseño responsivo.
 - Se integra un formulario de contacto funcional.
 - Se conectan redes sociales en el footer.
+- Se implementa un sistema de guardado de proyectos.
 
 ## ⚙️ ¿Cómo se hace?
 

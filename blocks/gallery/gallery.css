@@ -1,0 +1,75 @@
+.seccion {
+    padding: 40px 20px;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+.project-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.projcard {
+    flex: 0 0 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: left;
+    padding-bottom: 15px;
+}
+.projcard img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.projcard p {
+    padding: 0 15px;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #888;
+}
+.projcard h3 {
+    padding: 0 15px;
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+.projcard__text {
+    padding: 0 15px;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+}
+.submitb {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+.submitb:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .project-list {
+      flex-wrap: wrap;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    .projcard {
+      flex: 0 0 80%;
+      max-width: 350px;
+    }
+}

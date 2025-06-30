@@ -1,19 +1,25 @@
 .footer {
-  background-color: #ffffff;
-  color: white;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
   padding: 20px;
-  border-top: 1px gray solid;
+  background-color: #333;
+  color: white;
+  flex-wrap: wrap;
 }
-
 .footer__link {
-  color: rgb(0, 0, 0);
-  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
-
+.footer__link:hover {
+  color: #007bff;
+}
 .footer__img {
-  width: 20px;
-  vertical-align: middle;
-  margin-right: 5px;
+  height: 24px;
+  width: 24px;
 }
